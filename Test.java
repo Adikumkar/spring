@@ -1,28 +1,26 @@
-package com.capgemini.springAssignment.Q2;
+package com.capgemini.springAssignment.Q3;
 
+import org.springframework.aop.framework.AopConfigException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 
 public class Test {
     public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("springQ3.xml");
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("springQ2.xml");
-
-        // calling list of answer
-       Question question =(Question)context.getBean("Question");
-       question.displayAnswerList();
+        BankAccountController controller = (BankAccountController)context.getBean("controller");
 
 
-       // calling set of answer
-        System.out.println("=====================================");
-        Question question1 =(Question)context.getBean("Question1");
-        question1.displayAnswerSet();
+        System.out.println(controller.getBalance(1171));
+        System.out.println(controller.deposit(1171,5000));
+        System.out.println("+++++++++++++++++++++++++++");
+        System.out.println(controller.withdraw(1171,5000));
+        System.out.println(controller.getBalance(1171));
+        System.out.println("___________________________________________");
+        System.out.println(controller.fundTransfer(1171,1172,5000));
+        System.out.println(controller.getBalance(1171));
+        System.out.println(controller.getBalance(1172));
 
-        // calling map of answer
-        System.out.println("=====================================");
-        Question question2 =(Question)context.getBean("Question2");
-        question2.displayAnswerMap();
 
     }
 }
