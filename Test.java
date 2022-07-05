@@ -1,24 +1,21 @@
-package com.capgemini.springAssignment.Q4;
+package com.capgemini.springAssignment.Q5;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("springQ4.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("springQ5.xml");
 
-        BankAccountController controller = (BankAccountController)context.getBean("controller");
+        // add  <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+        Student studentRequired = (Student)context.getBean("studentRequired");
+        studentRequired.getStudentDetails();
 
 
-        System.out.println(controller.getBalance(1171));
-        System.out.println(controller.deposit(1171,5000));
-        System.out.println("+++++++++++++++++++++++++++");
-        System.out.println(controller.withdraw(1171,5000));
-        System.out.println(controller.getBalance(1171));
-        System.out.println("___________________________________________");
-        System.out.println(controller.fundTransfer(1171,1172,5000));
-        System.out.println(controller.getBalance(1171));
-        System.out.println(controller.getBalance(1172));
+        // add <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+        // in xml file
+        Student studentResource = (Student)context.getBean("studentResource");
+        studentResource.getStudentDetailsUsingResource();
 
 
     }
